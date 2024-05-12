@@ -1,6 +1,7 @@
 {
   "name": "rayql-vscode",
   "displayName": "rayql",
+  "publisher": "rayql",
   "description": "Syntax highlighting for RayQL",
   "version": "0.0.1",
   "engines": {
