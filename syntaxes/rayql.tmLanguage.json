@@ -1,0 +1,160 @@
+{
+    "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+    "name": "RayQL",
+    "scopeName": "source.rayql",
+    "fileTypes": ["rayql"],
+    "patterns": [
+        {
+            "include": "#comments"
+        },
+        {
+            "include": "#enums"
+        },
+        {
+            "include": "#models"
+        },
+        {
+            "include": "#types"
+        },
+        {
+            "include": "#constants"
+        },
+        {
+            "include": "#strings"
+        },
+        {
+            "include": "#numbers"
+        },
+        {
+            "include": "#boolean"
+        }
+    ],
+    "repository": {
+        "comments": {
+            "begin": "#",
+            "end": "$",
+            "name": "comment.line.number-sign.rayql"
+        },
+        "enums": {
+            "name": "meta.enum.rayql",
+            "begin": "\\b(enum)\\s+([A-Za-z_][\\w]*)\\s*\\{",
+            "beginCaptures": {
+                "1": {
+                    "name": "keyword.entity.rayql"
+                },
+                "2": {
+                    "name": "entity.name.type.enum.rayql"
+                }
+            },
+            "patterns": [
+                {
+                    "include": "#comments"
+                },
+                {
+                    "include": "#strings"
+                },
+                {
+                    "match": "\\b([A-Za-z_][\\w]*)\\b",
+                    "name": "variable.other.enum.member.rayql"
+                }
+            ],
+            "end": "\\}",
+            "endCaptures": {
+                "0": {
+                    "name": "punctuation.definition.tag.rayql"
+                }
+            }
+        },
+        "models": {
+            "name": "meta.model.rayql",
+            "begin": "\\b(model)\\s+([A-Za-z_][\\w]*)\\s*\\{",
+            "beginCaptures": {
+                "1": {
+                    "name": "keyword.entity.rayql"
+                },
+                "2": {
+                    "name": "entity.name.type.model.rayql"
+                }
+            },
+            "patterns": [
+                {
+                    "include": "#comments"
+                },
+                {
+                    "include": "#strings"
+                },
+                {
+                    "include": "#boolean"
+                },
+                {
+                    "include": "#types"
+                },
+                {
+                    "include": "#constants"
+                },
+                {
+                    "include": "#functional"
+                }
+            ],
+            "end": "\\}",
+            "endCaptures": {
+                "0": {
+                    "name": "punctuation.definition.tag.rayql"
+                }
+            }
+        },
+        "functional": {
+            "name": "source.rayql.functional",
+            "begin": "\\b(\\w+)\\s*\\(",
+            "beginCaptures": {
+                "1": {
+                    "name": "support.function.functional.rayql"
+                }
+            },
+            "patterns": [
+                {
+                    "include": "#comments"
+                },
+                {
+                    "include": "#strings"
+                },
+                {
+                    "include": "#numbers"
+                },
+                {
+                    "include": "#boolean"
+                },
+                {
+                    "include": "#functional"
+                }
+            ],
+            "end": "\\)",
+            "endCaptures": {
+                "0": {
+                    "name": "punctuation.definition.tag.rayql"
+                }
+            }
+        },
+        "types": {
+            "name": "storage.type.rayql",
+            "match": "\\b(int|str|bool|blob|real|timestamp)\\b"
+        },
+        "constants": {
+            "name": "constant.language.rayql",
+            "match": "\\b(primary_key|unique|auto_increment)\\b"
+        },
+        "strings": {
+            "name": "string.quoted.single.rayql",
+            "begin": "'",
+            "end": "'"
+        },
+        "numbers": {
+            "name": "constant.numeric.rayql",
+            "match": "\\b\\d+\\b"
+        },
+        "boolean": {
+            "match": "\\b(true|false)\\b",
+            "name": "constant.language.boolean.rayql"
+        }
+    }
+}

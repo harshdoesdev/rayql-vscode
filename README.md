@@ -1,2 +1,3 @@
 # rayql-vscode
-VS Code extension for RayQL syntax highlighting
+
+Syntax highlighting for `rayql`

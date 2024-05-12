@@ -1,0 +1,46 @@
+name: Build and Release VSCode Extension
+on:
+  workflow_dispatch:
+    inputs:
+        releaseTag:
+          description: 'Release Tag'     
+          required: true
+
+jobs:
+  build_and_release:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: '14.x'
+
+    - name: Update Version in package.json
+      run: |
+        # Read the provided GitHub tag from the workflow input
+        tag_name=${{ github.event.inputs.releaseTag }}
+        
+        # Update the version field in package.json
+        sed -i "s/\"version\": \".*\"/\"version\": \"$tag_name\"/" package.json
+
+    - name: Build VSCode Extension
+      run: |
+        npm i
+        npm install -g vsce
+        vsce package -o rayql-vscode-${{ github.event.inputs.releaseTag }}.vsix
+
+    - name: Create GitHub Release
+      id: create_release
+      uses: softprops/action-gh-release@v1
+      with:
+        files: "*.vsix"
+        body: | 
+            Install the extension and open any `.rayql` file to automatically enable syntax highlighting.
+
+            Checkout https://rayql.com/vscode/ for installation instructions!
+        tag_name: ${{ github.event.inputs.releaseTag }}
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

@@ -1,0 +1,40 @@
+{
+  "name": "rayql-vscode",
+  "displayName": "rayql",
+  "description": "Syntax highlighting for RayQL",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.87.0"
+  },
+  "categories": [
+    "Programming Languages"
+  ],
+  "contributes": {
+    "languages": [
+      {
+        "id": "rayql",
+        "aliases": [
+          "RayQL",
+          "rayql"
+        ],
+        "extensions": [
+          "rayql"
+        ],
+        "configuration": "./language-configuration.json"
+      }
+    ],
+    "grammars": [
+      {
+        "language": "rayql",
+        "scopeName": "source.rayql",
+        "path": "./syntaxes/rayql.tmLanguage.json"
+      }
+    ]
+  },
+  "scripts": {
+    "package": "vsce package"
+  },
+  "devDependencies": {
+    "vsce": "^2.15.0"
+  }
+}
