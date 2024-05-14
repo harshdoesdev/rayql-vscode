@@ -3,8 +3,8 @@
   "displayName": "rayql",
   "publisher": "rayql",
   "description": "Syntax highlighting for RayQL",
-  "version": "0.0.3",
-  "icon": "images/rayql.svg",
+  "version": "0.0.4",
+  "icon": "images/rayql.png",
   "engines": {
     "vscode": "^1.87.0"
   },
@@ -24,8 +24,8 @@
         ],
         "configuration": "./language-configuration.json",
         "icon": {
-          "light": "./images/rayql.svg",
-          "dark": "./images/rayql.svg"
+          "light": "./images/rayql.png",
+          "dark": "./images/rayql.png"
         }
       }
     ],
